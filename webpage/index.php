@@ -6,14 +6,30 @@ if (!file_exists("light.txt"))
 	fclose($datei);
 }
 
-$file_content = file_get_contents ("light.txt");
+echo "<html>";
+echo "<head>";
+echo "<meta charset=\"ISO-8859-1\">";
+echo "<title>Steuerungsseite Warnleuchte<title>";
+echo "</head>";
+echo "<body>";
+echo "<form action=\"index.php\" method=\"post\">";
+echo "	<input type=\"submit\" name=\"active\" value=\"Lampe aktivieren / <br />deaktivieren\">"
+echo "</form>"
+echo "</body>";
+echo "</html>";
 
-if ($file_content === 1)
+if (isset($_POST['active']))
 {
-  $file_content = 0;
+  if ($file_content === 1)
+  {
+    $datei = fopen("light.txt", "w");
+    fwrite($datei, "0");
+    fclose($datei);
+  }
+  else {
+    $datei = fopen("light.txt", "w");
+    fwrite($datei, "1");
+    fclose($datei);
+  }
 }
-else {
-  $file_content = 1;
-}
-
 ?>
