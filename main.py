@@ -49,4 +49,7 @@ while 1:
             curState = 0
         else:
             GPIO.output (RELAY_OUTPUT, GPIO.HIGH)
-            curState = 1a
+            curState = 1
+
+    lightStateFile.close()
+    time.sleep(.25)
